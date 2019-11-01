@@ -18,12 +18,12 @@ class ViewController: UIViewController {
     var taxOwed: Double = 0
     var taxRate: Double = 0
     let incomeAsDouble: Double = 0
-    // this shouldnt be here but the setLabel function wont work without it
+    // this shouldnt be needed but i get "use of unreolved identifier"
     let nameAsString = "Scott"
     
     // MARK: METHODS
     
-    // taxrate doesnt work, and the name doesnt work
+    // taxrate doesnt work, and the name doesnt work, says "inf"
     func setLabel () {
         
         taxRate = (taxOwed / incomeAsDouble) * 100
