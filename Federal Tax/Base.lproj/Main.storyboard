@@ -53,6 +53,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Claculate Tax Owing"/>
+                                <connections>
+                                    <action selector="calculateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kgV-dL-CQf"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhG-EB-Tdw">
                                 <rect key="frame" x="23" y="419" width="330" height="104"/>
@@ -65,6 +68,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="bottomLabel" destination="yhG-EB-Tdw" id="DEC-wd-DoX"/>
+                        <outlet property="incomeLabel" destination="2ix-76-AcH" id="NsZ-My-jNf"/>
+                        <outlet property="nameLabel" destination="QJr-HW-gzg" id="7O2-VF-MgS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
