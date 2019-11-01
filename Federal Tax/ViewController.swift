@@ -16,8 +16,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var incomeLabel: UITextField!
     @IBOutlet weak var bottomLabel: UILabel!
     var taxOwed: Double = 0
+    var taxRate: Double = 0
     
     // MARK: METHODS
+    
+    func setLabel () {
+        
+        taxRate = (taxOwed - incomeAsDouble) * 100
+        
+        bottomLabel.text = String(format: "\(nameLabel) your federal tax owing is $%.2f", taxOwed) + n\ + String(format: "Effective ax rate is: $%.2f", taxOwed)
+        
+    }
+    
+    override func viewDidLoad() {
+           super.viewDidLoad()
+           // Do any additional setup after loading the view.
+       }
 
     // When "Calculate Tax Owing" button is pressed
     @IBAction func calculateButton(_ sender: Any) {
@@ -40,6 +54,7 @@ class ViewController: UIViewController {
             return
         }
         
+        // If the value is negative it will stop and ask the user to enter a proper value
         if incomeAsDouble < 0 {
             bottomLabel.text = "Enter a Posistive Number"
             return
@@ -49,23 +64,30 @@ class ViewController: UIViewController {
         switch incomeAsDouble {
         case 0...47_630:
             taxOwed = incomeAsDouble * 0.15
+            setLabel ()
+            return
         case 47_631...95_259:
             taxOwed = ((incomeAsDouble - 47_630) * 0.205) + (47_630 * 0.15)
+            setLabel ()
+            return
         case 95_260...147_667:
             taxOwed = ((incomeAsDouble - 95_259) * 0.26) + (47_629 * 0.205) + (47_630 * 0.15)
+            setLabel ()
+            return
         case 147_668...210_371:
             taxOwed = ((incomeAsDouble - 147_668) * 0.29) + (52,408 * 0.26) + (47_629 * 0.205) + (47_630 * 0.15)
+            setLabel ()
+            return
         case 210_372...:
             ((incomeAsDouble - 210_372) * 0.33) + (62_704 * 0.29) + (52,408 * 0.26) + (47_629 * 0.205) + (47_630 * 0.15)
+            setLabel ()
+            return
         default:
             return
         }
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
+        
     }
 
 
