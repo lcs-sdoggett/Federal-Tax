@@ -17,20 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var bottomLabel: UILabel!
     var taxOwed: Double = 0
     var taxRate: Double = 0
-    let incomeAsDouble: Double = 0
-    // this shouldnt be needed but i get "use of unreolved identifier"
-    let nameAsString = "Scott"
     
     // MARK: METHODS
-    
-    // taxrate doesnt work, and the name doesnt work, says "inf"
-    func setLabel () {
-        
-        taxRate = (taxOwed / incomeAsDouble) * 100
-        
-        bottomLabel.text = String(format: "\(nameAsString) federal tax owing is $%.2f", taxOwed) + "\n" + "Effective tax rate is \(taxRate)"
-
-    }
     
     override func viewDidLoad() {
            super.viewDidLoad()
@@ -73,28 +61,22 @@ class ViewController: UIViewController {
         switch incomeAsDouble {
         case 0...47_630:
             taxOwed = incomeAsDouble * 0.15
-            setLabel ()
-            return
         case 47_631...95_259:
             taxOwed = ((incomeAsDouble - 47_630) * 0.205) + (47_630 * 0.15)
-            setLabel ()
-            return
         case 95_260...147_667:
             taxOwed = ((incomeAsDouble - 95_259) * 0.26) + (47_629 * 0.205) + (47_630 * 0.15)
-            setLabel ()
-            return
         case 147_668...210_371:
             taxOwed = ((incomeAsDouble - 147_668) * 0.29) + 30534.525
-            setLabel ()
-            return
         case 210_372...:
             taxOwed = ((incomeAsDouble - 210_372) * 0.33) + 48718.685
-            setLabel ()
-            return
         default:
             return
         }
         
+        taxRate = round((taxOwed / incomeAsDouble) * 100)
+        
+        bottomLabel.text = String(format: "\(nameAsString) federal tax owing is $%.2f", taxOwed) + "\n" + "\n" + "Effective tax rate is %\(taxRate)"
+
         
         
     }
