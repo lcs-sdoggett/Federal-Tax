@@ -17,15 +17,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var bottomLabel: UILabel!
     var taxOwed: Double = 0
     var taxRate: Double = 0
+    let incomeAsDouble: Double = 0
+    // this shouldnt be here but the setLabel function wont work without it
+    let nameAsString = "Scott"
     
     // MARK: METHODS
     
+    // taxrate doesnt work, and the name doesnt work
     func setLabel () {
         
-        taxRate = (taxOwed - incomeAsDouble) * 100
+        taxRate = (taxOwed / incomeAsDouble) * 100
         
-        bottomLabel.text = String(format: "\(nameLabel) your federal tax owing is $%.2f", taxOwed) + n\ + String(format: "Effective ax rate is: $%.2f", taxOwed)
-        
+        bottomLabel.text = String(format: "\(nameAsString) federal tax owing is $%.2f", taxOwed) + "\n" + "Effective tax rate is \(taxRate)"
+
     }
     
     override func viewDidLoad() {
@@ -37,10 +41,15 @@ class ViewController: UIViewController {
     @IBAction func calculateButton(_ sender: Any) {
         
         // Convert Name to string
-         guard let nameAsString = nameLabel.text else {
+        guard let nameAsString = nameLabel.text else {
                    bottomLabel.text = "Enter a Name"
                    return
                }
+        
+        if nameAsString == "" {
+            bottomLabel.text = "Enter a Name"
+            return
+        }
         
         // Convert income to double
         guard let incomeAsString = incomeLabel.text else {
@@ -75,11 +84,11 @@ class ViewController: UIViewController {
             setLabel ()
             return
         case 147_668...210_371:
-            taxOwed = ((incomeAsDouble - 147_668) * 0.29) + (52,408 * 0.26) + (47_629 * 0.205) + (47_630 * 0.15)
+            taxOwed = ((incomeAsDouble - 147_668) * 0.29) + 30534.525
             setLabel ()
             return
         case 210_372...:
-            ((incomeAsDouble - 210_372) * 0.33) + (62_704 * 0.29) + (52,408 * 0.26) + (47_629 * 0.205) + (47_630 * 0.15)
+            taxOwed = ((incomeAsDouble - 210_372) * 0.33) + 48718.685
             setLabel ()
             return
         default:
