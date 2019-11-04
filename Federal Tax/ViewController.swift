@@ -73,7 +73,8 @@ class ViewController: UIViewController {
             return
         }
         
-        taxRate = round((taxOwed / incomeAsDouble) * 100)
+        taxRate = (taxOwed / incomeAsDouble) * 1000
+        taxRate = (round(taxRate)) / 10
         
         bottomLabel.text = String(format: "\(nameAsString) federal tax owing is $%.2f", taxOwed) + "\n" + "\n" + "Effective tax rate is %\(taxRate)"
 
